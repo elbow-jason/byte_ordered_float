@@ -7,27 +7,27 @@ defmodule ByteOrderedFloat.MixProject do
       version: "0.1.0",
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      name: "ByteOrderedFloat",
+      package: package(),
+      description: description(),
+      source_url: "https://github.com/elbow-jason/byte_ordered_float"
     ]
   end
 
   # Run "mix help compile.app" to learn about applications.
   def application do
-    [
-      extra_applications: [:logger]
-    ]
+    []
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
-    [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
-    ]
+    []
   end
 
   defp description() do
-    "A few sentences (a paragraph) describing the project."
+    "ByteOrderFloat handles encoding and decoding for 64-bit floating point numbers with order preserved;" <>
+      " sorting a list of floats and sorting a list of encoded floats results in the same ordering."
   end
 
   defp package() do
@@ -35,10 +35,9 @@ defmodule ByteOrderedFloat.MixProject do
       # This option is only needed when you don't want to use the OTP application name
       name: "byte_ordered_float",
       # These are the default files included in the package
-      files: ~w(lib .formatter.exs mix.exs README* LICENSE*
-                license* CHANGELOG* changelog* src),
-      licenses: ["Apache-2.0"],
-      links: %{"GitHub" => "https://github.com/elixir-ecto/postgrex"}
+      files: ~w(lib .formatter.exs mix.exs README* LICENSE*),
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/elbow-jason/byte_ordered_float"}
     ]
   end
 end
