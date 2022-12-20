@@ -50,6 +50,9 @@ defmodule ByteOrderedFloat do
     <<1::1, rest::63>>
   end
 
+  @doc """
+  Decodes an ByteOrderedFloat encoded binary into a float.
+  """
   def decode(<<1::1, rest::63>>) do
     <<f::big-float-size(64)>> = <<0::1, rest::63>>
     {:ok, f}
