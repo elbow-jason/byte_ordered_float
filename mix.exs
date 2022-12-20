@@ -55,7 +55,7 @@ defmodule ByteOrderedFloat.MixProject do
       # This option is only needed when you don't want to use the OTP application name
       name: "byte_ordered_float",
       # These are the default files included in the package
-      files: ~w(lib .formatter.exs mix.exs README* LICENSE*),
+      files: ~w(lib .formatter.exs mix.exs readme* LICENSE*),
       maintainers: ["Jason Goldberger"],
       licenses: ["MIT"],
       links: %{"GitHub" => @github_url}
