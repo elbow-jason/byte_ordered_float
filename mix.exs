@@ -41,12 +41,12 @@ defmodule ByteOrderedFloat.MixProject do
 
   defp docs do
     [
-      # main: "readme",
+      main: "readme",
       source_ref: "v#{@version}",
-      source_url: @github_url
-      # extras: [
-      #   "./readme.md"
-      # ]
+      source_url: @github_url,
+      extras: [
+        "./readme.md"
+      ]
     ]
   end
 
@@ -58,7 +58,10 @@ defmodule ByteOrderedFloat.MixProject do
       files: ~w(lib .formatter.exs mix.exs readme* LICENSE*),
       maintainers: ["Jason Goldberger"],
       licenses: ["MIT"],
-      links: %{"GitHub" => @github_url}
+      links: %{
+        "GitHub" => @github_url,
+        "Online documentation" => "https://hexdocs.pm/byte_ordered_float/readme.html"
+      }
     ]
   end
 end
