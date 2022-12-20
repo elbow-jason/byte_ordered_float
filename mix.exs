@@ -1,6 +1,8 @@
 defmodule ByteOrderedFloat.MixProject do
   use Mix.Project
 
+  @github_url "https://github.com/elbow-jason/byte_ordered_float"
+
   def project do
     [
       app: :byte_ordered_float,
@@ -11,7 +13,7 @@ defmodule ByteOrderedFloat.MixProject do
       name: "ByteOrderedFloat",
       package: package(),
       description: description(),
-      source_url: "https://github.com/elbow-jason/byte_ordered_float"
+      source_url: @github_url
     ]
   end
 
@@ -37,7 +39,7 @@ defmodule ByteOrderedFloat.MixProject do
       # These are the default files included in the package
       files: ~w(lib .formatter.exs mix.exs README* LICENSE*),
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/elbow-jason/byte_ordered_float"}
+      links: %{"GitHub" => @github_url}
     ]
   end
 end
