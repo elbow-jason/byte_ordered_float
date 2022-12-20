@@ -28,7 +28,7 @@ iex> ByteOrderedFloat.decode(<<191, 185, 153, 153, 153, 153, 153, 154>>)
 iex> ByteOrderedFloat.encode(:not_a_float)
 :error
 
-iex> ByteOrderedFloat.decode("not a valid float-encoding binary")
+iex> ByteOrderedFloat.decode("not a valid float-encoded binary")
 :error
 ```
 
@@ -67,7 +67,7 @@ iex> ByteOrderedFloat.encode(-1.0)
 Encoded positives are greater than zero.
 
 ```elixir
-# the most negative float
+# the most positive float
 iex> ByteOrderedFloat.encode(1.7976931348623157E+308)
 {:ok, <<255, 239, 255, 255, 255, 255, 255, 255>>}
 
