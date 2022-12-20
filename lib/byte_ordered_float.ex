@@ -22,6 +22,20 @@ defmodule ByteOrderedFloat do
 
   @doc """
   Encodes floats into a 8-byte binary that is float-order preserving.
+
+  ## Examples
+
+    iex> ByteOrderedFloat.encode(-1.0)
+    {:ok, <<64, 15, 255, 255, 255, 255, 255, 255>>}
+
+    iex> ByteOrderedFloat.encode(0.0)
+    {:ok, <<0, 0, 0, 0, 0, 0, 0, 0>>}
+
+    iex> ByteOrderedFloat.encode(1.0)
+    {:ok, <<191, 240, 0, 0, 0, 0, 0, 0>>}
+
+    iex> ByteOrderedFloat.encode(nil)
+    :error
   """
   @spec encode(any) :: :error | {:ok, <<_::64>>}
   def encode(f) when is_float(f) do
@@ -53,6 +67,23 @@ defmodule ByteOrderedFloat do
 
   @doc """
   Decodes an ByteOrderedFloat encoded binary into a float.
+
+  ## Examples
+
+    iex> {:ok, e} = ByteOrderedFloat.encode(-1.0)
+    iex> ByteOrderedFloat.decode(e)
+    {:ok, -1.0}
+
+    iex> {:ok, e} = ByteOrderedFloat.encode(0.0)
+    iex> ByteOrderedFloat.decode(e)
+    {:ok, 0.0}
+
+    iex> {:ok, e} = ByteOrderedFloat.encode(1.0)
+    iex> ByteOrderedFloat.decode(e)
+    {:ok, 1.0}
+
+    iex> ByteOrderedFloat.decode("1.0")
+    :error
   """
   @spec decode(any) :: :error | {:ok, float}
   def decode(encoded_float)
