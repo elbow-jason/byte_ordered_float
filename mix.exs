@@ -28,8 +28,7 @@ defmodule ByteOrderedFloat.MixProject do
   end
 
   defp description() do
-    "ByteOrderFloat handles encoding and decoding for 64-bit floating point numbers with order preserved;" <>
-      " sorting a list of floats and sorting a list of encoded floats results in the same ordering."
+    "ByteOrderFloat handles encoding and decoding for 64-bit floating point numbers with sorting order preserved."
   end
 
   defp package() do
