@@ -41,12 +41,12 @@ defmodule ByteOrderedFloat.MixProject do
 
   defp docs do
     [
-      main: "readme",
+      # main: "readme",
       source_ref: "v#{@version}",
-      source_url: @github_url,
-      extras: [
-        "./readme.md"
-      ]
+      source_url: @github_url
+      # extras: [
+      #   "./readme.md"
+      # ]
     ]
   end
 
