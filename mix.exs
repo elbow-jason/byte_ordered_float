@@ -2,7 +2,7 @@ defmodule ByteOrderedFloat.MixProject do
   use Mix.Project
 
   @github_url "https://github.com/elbow-jason/byte_ordered_float"
-  @version "0.1.1"
+  @version "0.1.2"
   @description "ByteOrderFloat handles encoding and decoding for 64-bit floating point numbers with sorting order preserved."
 
   def project do
