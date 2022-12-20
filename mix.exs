@@ -59,8 +59,7 @@ defmodule ByteOrderedFloat.MixProject do
       maintainers: ["Jason Goldberger"],
       licenses: ["MIT"],
       links: %{
-        "GitHub" => @github_url,
-        "Online documentation" => "https://hexdocs.pm/byte_ordered_float/readme.html"
+        "GitHub" => @github_url
       }
     ]
   end
