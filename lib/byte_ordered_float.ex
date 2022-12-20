@@ -29,7 +29,7 @@ defmodule ByteOrderedFloat do
       {:ok, <<64, 15, 255, 255, 255, 255, 255, 255>>}
 
       iex> ByteOrderedFloat.encode(0.0)
-      {:ok, <<0, 0, 0, 0, 0, 0, 0, 0>>}
+      {:ok, <<128, 0, 0, 0, 0, 0, 0, 0>>}
 
       iex> ByteOrderedFloat.encode(1.0)
       {:ok, <<191, 240, 0, 0, 0, 0, 0, 0>>}
@@ -47,8 +47,8 @@ defmodule ByteOrderedFloat do
   end
 
   # zero - all 64 bits are zeros therefore the value is zero.
-  defp encode_float_order_preserved(<<0::64>> = zero) do
-    zero
+  defp encode_float_order_preserved(<<0::64>>) do
+    <<1::1, 0::63>>
   end
 
   # negative - when first bit is 1

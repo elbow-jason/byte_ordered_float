@@ -19,6 +19,40 @@ defmodule ByteOrderedFloatTest do
     Enum.map(1..n, fn _ -> random_float(scale) end)
   end
 
+  test "preserves order when dealing with max and min float values" do
+    min_f = -1.7976931348623157e+308
+    max_f = 1.7976931348623157e+308
+    assert min_f < 0.0
+    assert max_f > 0.0
+
+    assert {:ok, min_e} = ByteOrderedFloat.encode(min_f)
+    assert {:ok, max_e} = ByteOrderedFloat.encode(max_f)
+    assert {:ok, zero_e} = ByteOrderedFloat.encode(0.0)
+
+    assert min_e < zero_e
+    assert max_e > zero_e
+  end
+
+  test "preserves order when dealing with near-zero float values" do
+    neg_f = -1.7976931348623157e-308
+    pos_f = 1.7976931348623157e-308
+    assert neg_f < 0.0
+    assert pos_f > 0.0
+
+    assert {:ok, neg_e} = ByteOrderedFloat.encode(neg_f)
+    assert {:ok, pos_e} = ByteOrderedFloat.encode(pos_f)
+    assert {:ok, zero_e} = ByteOrderedFloat.encode(0.0)
+
+    assert neg_e < zero_e
+    assert pos_e > zero_e
+  end
+
+  test "can encode and decode zero" do
+    assert {:ok, zero} = ByteOrderedFloat.encode(0.0)
+    assert {:ok, 0.0} == ByteOrderedFloat.decode(zero)
+    assert zero == <<128, 0, 0, 0, 0, 0, 0, 0>>
+  end
+
   describe "encode/1" do
     test "preserves order" do
       sorted = Enum.sort(random_floats(100_000))
