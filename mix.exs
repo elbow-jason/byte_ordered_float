@@ -45,7 +45,7 @@ defmodule ByteOrderedFloat.MixProject do
       source_ref: "v#{@version}",
       source_url: @github_url,
       extras: [
-        "./README.md"
+        "./readme.md"
       ]
     ]
   end
