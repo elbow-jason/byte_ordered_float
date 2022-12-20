@@ -1,9 +1,9 @@
 defmodule ByteOrderedFloat do
   @moduledoc """
-  ByteOrderedFloat is used to encode (and decode) float values into bigendian-like, order-preserving
+  ByteOrderedFloat is used to encode and decode float values into big-endian-like, order-preserving
   binaries.
 
-  ## BIG THANKS
+  ## Acknowledgements
 
   Big thanks to Aravind Ravi-Sulekha for a super helpful article.
 
@@ -17,6 +17,7 @@ defmodule ByteOrderedFloat do
   bits so that larger negative numbers get sorted before smaller ones.
 
   Source: https://medium.com/@aravindet/order-preserving-encoding-for-floats-cde09c978629
+
   """
   import Bitwise
 
