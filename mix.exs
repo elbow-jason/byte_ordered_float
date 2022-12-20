@@ -2,18 +2,27 @@ defmodule ByteOrderedFloat.MixProject do
   use Mix.Project
 
   @github_url "https://github.com/elbow-jason/byte_ordered_float"
+  @version "0.1.1"
+  @description "ByteOrderFloat handles encoding and decoding for 64-bit floating point numbers with sorting order preserved."
 
   def project do
     [
       app: :byte_ordered_float,
-      version: "0.1.1",
+      version: @version,
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ],
       deps: deps(),
       name: "ByteOrderedFloat",
+      description: @description,
       package: package(),
-      description: description(),
-      source_url: @github_url
+      docs: docs(),
+      test_coverage: [tool: ExCoveralls]
     ]
   end
 
@@ -25,12 +34,20 @@ defmodule ByteOrderedFloat.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
+      {:excoveralls, "~> 0.14.4", only: :test}
     ]
   end
 
-  defp description() do
-    "ByteOrderFloat handles encoding and decoding for 64-bit floating point numbers with sorting order preserved."
+  defp docs do
+    [
+      main: "README",
+      source_ref: "v#{@version}",
+      source_url: @github_url,
+      extras: [
+        "./README.md"
+      ]
+    ]
   end
 
   defp package() do
@@ -39,6 +56,7 @@ defmodule ByteOrderedFloat.MixProject do
       name: "byte_ordered_float",
       # These are the default files included in the package
       files: ~w(lib .formatter.exs mix.exs README* LICENSE*),
+      maintainers: ["Jason Goldberger"],
       licenses: ["MIT"],
       links: %{"GitHub" => @github_url}
     ]
