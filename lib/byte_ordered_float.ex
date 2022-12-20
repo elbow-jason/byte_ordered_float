@@ -23,6 +23,7 @@ defmodule ByteOrderedFloat do
   @doc """
   Encodes floats into a 8-byte binary that is float-order preserving.
   """
+  @spec encode(any) :: :error | {:ok, <<_::64>>}
   def encode(f) when is_float(f) do
     {:ok, encode_float_order_preserved(<<f::big-float-size(64)>>)}
   end
@@ -53,6 +54,9 @@ defmodule ByteOrderedFloat do
   @doc """
   Decodes an ByteOrderedFloat encoded binary into a float.
   """
+  @spec decode(any) :: :error | {:ok, float}
+  def decode(encoded_float)
+
   def decode(<<1::1, rest::63>>) do
     <<f::big-float-size(64)>> = <<0::1, rest::63>>
     {:ok, f}
