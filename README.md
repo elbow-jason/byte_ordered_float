@@ -89,7 +89,7 @@ The package can be installed from hex by adding `byte_ordered_float` to your lis
 ```elixir
 def deps do
   [
-    {:byte_ordered_float, "~> 0.1.1"}
+    {:byte_ordered_float, "~> 0.1.2"}
   ]
 end
 ```
