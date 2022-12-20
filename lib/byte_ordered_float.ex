@@ -88,13 +88,16 @@ defmodule ByteOrderedFloat do
   @spec decode(any) :: :error | {:ok, float}
   def decode(encoded_float)
 
+  def decode(<<0::64>>) do
+    {:ok, 0.0}
+  end
+
   def decode(<<1::1, rest::63>>) do
     <<f::big-float-size(64)>> = <<0::1, rest::63>>
     {:ok, f}
-  end
-
-  def decode(<<0::64>>) do
-    {:ok, 0.0}
+  rescue
+    MatchError ->
+      :error
   end
 
   def decode(<<0::1, e_exp::big-signed-integer-size(11), e_frac::big-signed-integer-size(52)>>) do
