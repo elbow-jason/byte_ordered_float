@@ -2,21 +2,23 @@ defmodule ByteOrderedFloatTest do
   use ExUnit.Case
   doctest ByteOrderedFloat
 
-  defp random_float(scale) do
-    signed =
-      case :rand.normal() do
-        x when x < 0.0 ->
-          -1.0
+  @max_u64 18_446_744_073_709_551_615
 
-        _ ->
-          1.0
-      end
+  def random_float() do
+    int = Enum.random(0..@max_u64)
 
-    :rand.uniform() * scale * signed
+    try do
+      <<float::big-float-size(64)>> = <<int::big-unsigned-integer-size(64)>>
+      float
+    rescue
+      MatchError ->
+        # we got some bad bits. just try again.
+        random_float()
+    end
   end
 
-  defp random_floats(n, scale \\ 1.0) do
-    Enum.map(1..n, fn _ -> random_float(scale) end)
+  def random_floats(n) do
+    Enum.map(1..n, fn _ -> random_float() end)
   end
 
   test "preserves order when dealing with max and min float values" do
@@ -70,7 +72,7 @@ defmodule ByteOrderedFloatTest do
 
   describe "decode/2" do
     test "preserves values" do
-      floats = random_floats(100_000)
+      floats = random_floats(500_000)
       assert is_float(hd(floats))
 
       encoded =
